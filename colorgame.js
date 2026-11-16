@@ -1,3 +1,4 @@
+
 var colors = [];
 
 var squares = document.querySelectorAll(".square");
@@ -57,13 +58,14 @@ function reset() {
 
     colorDisplay.textContent = pickedColor;
     message.textContent = "";
-    h1.style.backgroundColor = "#711cff";
+    h1.style.backgroundColor = "";
 
     assignColors();
 }
 
 for (var i = 0; i < squares.length; i++) {
     squares[i].addEventListener("click", function() {
+
         var clickedColor = this.style.backgroundColor;
 
         if (clickedColor === pickedColor) {
@@ -74,6 +76,7 @@ for (var i = 0; i < squares.length; i++) {
             this.style.backgroundColor = "#111225";
             message.textContent = "Intentalo nuevamente";
         }
+
     });
 }
 
