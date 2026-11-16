@@ -8,26 +8,17 @@ var colors = [
 ];
 
 var squares = document.querySelectorAll(".square");
+var pickedColor = pickColor();
 var colorDisplay = document.querySelector("#colorDisplay");
 var message = document.querySelector("#message");
-var h1 = document.querySelector("h1");
+var h1 = document.querySelector("#h1");
 var resetButton = document.querySelector("#reset");
-var easyBtn = document.querySelector("#easyBtn");
-var hardBtn = document.querySelector("#hardBtn");
+var hardButton = document.querySelector("#hard");
+var easyButton = document.querySelector("#easy");
 
 var numSquares = 6;
-var pickedColor;
 
-function assignColors() {
-    for (var i = 0; i < squares.length; i++) {
-        if (i < numSquares) {
-            squares[i].style.display = "block";
-            squares[i].style.backgroundColor = colors[i];
-        } else {
-            squares[i].style.display = "none";
-        }
-    }
-}
+colorDisplay.textContent = pickedColor;
 
 function pickColor() {
     var random = Math.floor(Math.random() * colors.length);
@@ -58,13 +49,23 @@ function changeColors(color) {
     }
 }
 
+function assignColors() {
+    for (var i = 0; i < squares.length; i++) {
+        if (i < numSquares) {
+            squares[i].style.display = "block";
+            squares[i].style.backgroundColor = colors[i];
+        } else {
+            squares[i].style.display = "none";
+        }
+    }
+}
+
 function reset() {
     colors = generateRandomColors(numSquares);
     pickedColor = pickColor();
-
     colorDisplay.textContent = pickedColor;
     message.textContent = "";
-    h1.style.backgroundColor = "steelblue";
+    h1.style.backgroundColor = "#232323";
 
     assignColors();
 }
@@ -90,13 +91,17 @@ resetButton.addEventListener("click", function() {
     reset();
 });
 
-easyBtn.addEventListener("click", function() {
+easyButton.addEventListener("click", function() {
     numSquares = 3;
+    easyButton.classList.add("selected");
+    hardButton.classList.remove("selected");
     reset();
 });
 
-hardBtn.addEventListener("click", function() {
+hardButton.addEventListener("click", function() {
     numSquares = 6;
+    hardButton.classList.add("selected");
+    easyButton.classList.remove("selected");
     reset();
 });
 
